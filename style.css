@@ -1,0 +1,89 @@
+body {
+  background-image: url(resources/bgall.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bluranimation {
+  animation: bluranimation cubic-bezier(0, 1, 0, 0.99) 2.5s;
+}
+
+@keyframes bluranimation {
+  0% {
+    filter: blur(100px);
+  }
+
+  100% {
+    filter: blur(0px);
+  }
+}
+
+.animacion {
+  animation: fade-left ease-in-out 300ms;
+}
+
+.animacion2 {
+  animation: opacity 300ms;
+}
+
+.animacion3 {
+  animation: opacity2 1.5s;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid rgb(0, 0, 0);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+@keyframes fade-left {
+  0% {
+    transform: translateX(50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes opacity2 {
+  0% {
+    opacity: 100%;
+  }
+
+  90% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
