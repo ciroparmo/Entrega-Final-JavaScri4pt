@@ -59,6 +59,42 @@ const productosCarrito = JSON.parse(localStorage.getItem('carritoCompras')) || [
 
 let precioTotal = JSON.parse(localStorage.getItem('precioTotal')) || 0
 
+let containerButtons = document.getElementById('containerButtons')
+
+class buttonMarcas {
+  constructor(id, imagen, nombre) {
+    this.id = id
+    this.imagen = imagen
+    this.nombre = nombre
+  }
+}
+
+let corteizButtonDisplay = new buttonMarcas('corteizButton', 'resources/corteiz.png', 'Corteiz')
+
+let nikeButtonDisplay = new buttonMarcas('nikeButton', 'resources/nike.png', 'Nike')
+
+let yeezyButtonDisplay = new buttonMarcas('yeezyButton', 'resources/yeezy.png', 'Yeezy')
+
+let jordanButtonDisplay = new buttonMarcas('jordanButton', 'resources/jordan.png', 'Jordan')
+
+let bapeButtonDisplay = new buttonMarcas('bapeButton', 'resources/bape.png', 'Bape')
+
+const buttonMarcasDisplay = [corteizButtonDisplay, nikeButtonDisplay, yeezyButtonDisplay, jordanButtonDisplay, bapeButtonDisplay]
+
+buttonMarcasDisplay.forEach((el) => {
+  let cardButtons = `
+  <div id="${el.id}" class="h-[30px]  flex my-2 cursor-pointer">
+  <div class="h-full w-10% flex items-center justify-center">
+    <img src="${el.imagen}" alt="" class="h-[90%]">
+  </div>
+  <div class="h-full w-90% flex items-center">
+    <span class="pl-3">${el.nombre}</span>
+  </div>
+</div>`
+
+containerButtons.innerHTML += cardButtons
+})
+
 // Elements Header
 
 const searchProductos = document.getElementById('searchProductos')
@@ -158,6 +194,8 @@ precioTotalCarrito.innerHTML = `
 
 const productosButton = document.getElementById('productosButton')
 
+const corteizButton = document.getElementById('corteizButton')
+
 const nikeButton = document.getElementById('nikeButton')
 
 const yeezyButton = document.getElementById('yeezyButton')
@@ -197,8 +235,20 @@ const bapeButton = document.getElementById('bapeButton')
           tipo: productosDisponibles[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosDisponibles[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosDisponibles[index].precio
+          precioTotal = precioTotal + productosDisponibles[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -252,8 +302,20 @@ function todosLosProductos() {
           tipo: productosDisponibles[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosDisponibles[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosDisponibles[index].precio
+          precioTotal = precioTotal + productosDisponibles[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -311,8 +373,20 @@ function filtrarCorteiz() {
           tipo: productosFiltrados[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosFiltrados[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosFiltrados[index].precio
+          precioTotal = precioTotal + productosFiltrados[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -370,8 +444,20 @@ function filtrarNike() {
           tipo: productosFiltrados[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosFiltrados[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosFiltrados[index].precio
+          precioTotal = precioTotal + productosFiltrados[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -429,8 +515,20 @@ function filtrarYeezy() {
           tipo: productosFiltrados[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosFiltrados[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosFiltrados[index].precio
+          precioTotal = precioTotal + productosFiltrados[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -488,8 +586,20 @@ function filtrarJordan() {
           tipo: productosFiltrados[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosFiltrados[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosFiltrados[index].precio
+          precioTotal = precioTotal + productosFiltrados[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -547,8 +657,20 @@ function filtrarBape() {
           tipo: productosFiltrados[index].tipo,
           cantidad: 1
         }
+
+        const productoExistente = productosCarrito.find((el) => el.id === productosFiltrados[index].id) 
+
+        if (productoExistente === undefined) {
         productosCarrito.push(enviarCarrito)
         precioTotal = precioTotal + enviarCarrito.precio
+        }
+
+        else {
+          productoExistente.cantidad += 1
+          productoExistente.precio += productosFiltrados[index].precio
+          precioTotal = precioTotal + productosFiltrados[index].precio
+        }
+
         let precioTotalStorage = JSON.stringify(precioTotal)
         localStorage.setItem('precioTotal', precioTotalStorage)
         eventCarrito()
@@ -631,7 +753,6 @@ function eventCarrito () {
         carritoNumero()
       })
     })
-   
   })
 }
 
